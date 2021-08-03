@@ -37,39 +37,38 @@ class RestaurantTest {
     public void is_restaurant_open_should_return_true_if_time_is_between_opening_and_closing_time() {
         //DONE WRITE UNIT TEST CASE HERE
 
-        // Between working hours
+        // Between working time
         LocalTime betweenWorkingHours = LocalTime.of(11, 30, 0);
-        // Edge case - exact opening time
+        // Edge case
         LocalTime exactOpeningTime = LocalTime.of(10, 30, 0);
 
         // Mock the current time
         Mockito.when(spiedRestaurant.getCurrentTime()).thenReturn(betweenWorkingHours, exactOpeningTime);
 
-        // Between working hours
+        // Between working time
         assertTrue(spiedRestaurant.isRestaurantOpen());
-        // Edge case - exact opening time
+        // Edge case
         assertTrue(spiedRestaurant.isRestaurantOpen());
     }
 
     @Test
     public void is_restaurant_open_should_return_false_if_time_is_outside_opening_and_closing_time() {
-        //DONE WRITE UNIT TEST CASE HERE
 
-        // Before opening hours
+        // Before opening time
         LocalTime beforeOpeningHours = LocalTime.of(9, 30, 0);
-        // After closing hours
+        // After closing time
         LocalTime afterClosingHours = LocalTime.of(23, 0, 0);
-        // Edge case - exact closing time
+        // Edge case
         LocalTime exactClosingTime = LocalTime.of(22, 0, 0);
 
         // Mock the current time
         Mockito.when(spiedRestaurant.getCurrentTime()).thenReturn(beforeOpeningHours, afterClosingHours, exactClosingTime);
 
-        // Before opening hours
+        // Before opening time
         assertFalse(spiedRestaurant.isRestaurantOpen());
-        // After closing hours
+        // After closing time
         assertFalse(spiedRestaurant.isRestaurantOpen());
-        // Edge case - exact closing time
+        // Edge case
         assertFalse(spiedRestaurant.isRestaurantOpen());
     }
     //<<<<<<<<<<<<<<<<<<<<<<<<<OPEN/CLOSED>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
